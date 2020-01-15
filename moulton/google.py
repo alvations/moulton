@@ -24,7 +24,7 @@ def get_gscholar(gscholar_url, output_json_filename):
         if e.get_attribute('disabled') == 'true':
             break
     time.sleep(0.7)
-    
+
     # Collect all publications listed.
     publications = []
 
@@ -37,7 +37,6 @@ def get_gscholar(gscholar_url, output_json_filename):
                     e.text.split('\n')[0])))).click()
         _json = {}
         time.sleep(0.7)
-        print(e.text)
         bsoup = BeautifulSoup(driver.page_source.encode('utf-8'))
         cite = bsoup.find('div', attrs={'id': 'gs_md_cita-l'})
         keys = cite.find_all('div', attrs={'class':'gsc_vcd_field'})
@@ -49,7 +48,6 @@ def get_gscholar(gscholar_url, output_json_filename):
                 _json[k.text] = int(v.find('a').text[9:])
             else:
                 _json[k.text] = v.get_text('\n')
-        print(_json)
         time.sleep(0.7)
         driver.find_element_by_xpath('//a[@id="gs_md_cita-d-x"]').click()
 
@@ -58,7 +56,6 @@ def get_gscholar(gscholar_url, output_json_filename):
             json_str = json.dumps(_json)
             if json_str not in publications:
                 publications.append(json_str)
-        print('#######')
     # Clean up and convert the json string back to a proper json object.
     publications = [json.loads(c) for c in publications]
 
