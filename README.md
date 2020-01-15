@@ -7,6 +7,8 @@ Cos I was asked to list **all of my papers** on an spreadsheet and populate info
 Come on, we seriously have more important things to do!!!
 -->
 
+Download your Google Scholar data.
+
 Install
 ====
 
